@@ -1,0 +1,13 @@
+extends ../layout
+
+block content
+
+    a(href="/books/new", class="button") Create New Book
+
+    form(class="search-bar" method='get', action="/books/search")
+            input(name='term', type='text', placeholder='title,author,etc...')
+            input(type="submit" value="Search")
+
+    h2 No Book matches the search term "#{term}"
+    p Try another search term or 
+        a(href="/books") return to all books listing

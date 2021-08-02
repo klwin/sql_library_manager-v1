@@ -1,0 +1,35 @@
+extends ../layout
+
+block content
+
+    a(href="/books/new", class="button") Create New Book
+
+    form(class="search-bar" method='get', action="/books/search")
+            input(name='term', type='text', placeholder='title,author,etc...')
+            input(type="submit" value="Search")
+
+    table
+        thead
+            tr
+                th Title
+                th Author
+                th Genre
+                th Year
+        tbody 
+        each book in books
+            tr
+                td 
+                    a(href="/books/" + book.id)=book.title
+                td=book.author
+                td=book.genre
+                td=book.year      
+
+    ul(class="pagination-links")
+        while pageLinks <= numOfPages
+            li
+                if term
+                    a(href=`/books/search?term=${term}&page=${pageLinks}`)=pageLinks++
+                        button
+                else
+                    a(href=`/books/?page=${pageLinks}`)=pageLinks++ 
+                        button
